@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analytics Dashboard | The Qlip - Transforming Ideas into Digital Excellence</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0a1a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(45, 254, 192, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(45, 254, 192, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(45, 254, 192, 0.08) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(10, 18, 26, 0.507);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(45, 254, 192, 0.15);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: hsl(0, 0%, 100%);
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 44px;
+            margin-right: 12px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: hsl(162, 100%, 59%);
+        }
+
+        .back-btn {
+            padding: 10px 24px;
+            background: transparent;
+            color: hsl(162, 100%, 59%);
+            border: 2px solid hsl(162, 100%, 59%);
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background: hsl(162, 100%, 59%);
+            color: #000;
+            transform: translateY(-2px);
+        }
+
+        .dashboard-hero {
+            position: relative;
+            padding: 200px 20px 120px;
+            text-align: center;
+            background: linear-gradient(to bottom, rgba(10, 25, 26, 0.63) 0%, rgba(0, 0, 0, 0.95) 100%),
+                        url('images/heroimage.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll, fixed;
+            min-height: 60vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .dashboard-hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .dashboard-hero h1 {
+            font-size: 3rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            color: #ffffff;
+            line-height: 1.1;
+        }
+
+        .dashboard-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+        }
+
+        .dashboard-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 24px;
+            margin-bottom: 60px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(45, 254, 192, 0.15);
+            border-radius: 24px;
+            padding: 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            border-color: rgba(45, 254, 192, 0.3);
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            font-size: 3rem;
+            color: hsl(162, 100%, 59%);
+            margin-bottom: 16px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+            font-weight: 400;
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .chart-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(45, 254, 192, 0.15);
+            border-radius: 24px;
+            padding: 32px;
+            transition: all 0.3s ease;
+        }
+
+        .chart-card:hover {
+            border-color: rgba(45, 254, 192, 0.3);
+        }
+
+        .chart-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: hsl(162, 100%, 59%);
+            text-align: center;
+        }
+
+        .chart-container {
+            position: relative;
+            height: 300px;
+        }
+
+        .logs-section {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(45, 254, 192, 0.15);
+            border-radius: 24px;
+            padding: 32px;
+        }
+
+        .logs-section h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: hsl(162, 100%, 59%);
+        }
+
+        .logs-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .logs-table th,
+        .logs-table td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid rgba(45, 254, 192, 0.1);
+        }
+
+        .logs-table th {
+            background: rgba(45, 254, 192, 0.1);
+            font-weight: 600;
+            color: hsl(162, 100%, 59%);
+        }
+
+        .logs-table tr:hover {
+            background: rgba(45, 254, 192, 0.05);
+        }
+
+        .timestamp {
+            font-size: 0.85rem;
+            opacity: 0.7;
+        }
+
+        .action-badge {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            background: rgba(45, 254, 192, 0.2);
+            color: hsl(162, 100%, 59%);
+        }
+
+        .export-btn {
+            background: linear-gradient(135deg, hsl(162, 100%, 20%) 0%, hsl(162, 100%, 15%) 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+
+        .export-btn:hover {
+            background: linear-gradient(135deg, hsl(162, 100%, 15%) 0%, hsl(162, 100%, 10%) 100%);
+            transform: translateY(-2px);
+        }
+
+        .footer {
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(45, 254, 192, 0.15);
+            padding: 40px 20px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .footer p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-hero { padding: 160px 20px 80px; }
+            .dashboard-hero h1 { font-size: 2.5rem; }
+            .dashboard-content { padding: 40px 16px; }
+            .stats-grid { grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+            .charts-grid { grid-template-columns: 1fr; }
+            .logs-table { font-size: 0.9rem; }
+            .logs-table th, .logs-table td { padding: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <svg class="waves" viewBox="0 0 1200 800" preserveAspectRatio="none" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; opacity: 0.6;">
+        <defs>
+            <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:hsl(162, 100%, 59%);stop-opacity:0.3" />
+                <stop offset="100%" style="stop-color:hsl(162, 100%, 59%);stop-opacity:0" />
+            </linearGradient>
+        </defs>
+        <path d="M0,256L48,266.7C96,277,192,299,288,277.3C384,256,480,192,576,170.7C672,149,768,171,864,197.3C960,224,1056,256,1144,266.7L1200,277L1200,320L1144,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="url(#waveGrad)" />
+        <path d="M0,192L48,202.7C96,213,192,235,288,213.3C384,192,480,128,576,106.7C672,85,768,107,864,133.3C960,160,1056,192,1144,202.7L1200,213L1200,320L1144,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="url(#waveGrad)" opacity="0.5" />
+    </svg>
+
+    <header>
+        <a href="index.html" class="logo">
+            <img src="images/The Qlip.png" alt="The Qlip">
+            The Qlip
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="index.html" class="back-btn">Back to Home</a>
+    </header>
+
+    <section class="dashboard-hero">
+        <div class="dashboard-hero-content">
+            <h1>Analytics Dashboard</h1>
+            <p>Real-time insights into site activity, visitor behavior, and engagement metrics.</p>
+        </div>
+    </section>
+
+    <div class="dashboard-content">
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-users"></i></div>
+                <div class="stat-number" id="totalVisitors">1,247</div>
+                <div class="stat-label">Total Visitors</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-eye"></i></div>
+                <div class="stat-number" id="pageViews">4,892</div>
+                <div class="stat-label">Page Views</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-mouse-pointer"></i></div>
+                <div class="stat-number" id="userActions">1,056</div>
+                <div class="stat-label">User Actions</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="stat-number" id="bounceRate">32%</div>
+                <div class="stat-label">Bounce Rate</div>
+            </div>
+        </div>
+
+        <div class="charts-grid">
+            <div class="chart-card">
+                <h3>Traffic Sources</h3>
+                <div class="chart-container">
+                    <canvas id="trafficChart"></canvas>
+                </div>
+            </div>
+            <div class="chart-card">
+                <h3>Actions Over Time</h3>
+                <div class="chart-container">
+                    <canvas id="actionsChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+        <div class="logs-section">
+            <h3>Recent Visitor Logs</h3>
+            <p style="opacity: 0.7; margin-bottom: 20px;">Detailed actions with IP tracking (anonymized for privacy; full logs via backend).</p>
+            <table class="logs-table">
+                <thead>
+                    <tr>
+                        <th>Timestamp</th>
+                        <th>IP Address</th>
+                        <th>Action</th>
+                        <th>Page</th>
+                        <th>User Agent Snippet</th>
+                    </tr>
+                </thead>
+                <tbody id="logsTableBody">
+                    <!-- Dynamic population via JS -->
+                </tbody>
+            </table>
+            <button class="export-btn" onclick="exportLogs()">Export Logs (CSV)</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 The Qlip Technologies Ltd. All rights reserved. | Securely powered by modern analytics.</p>
+    </footer>
+
+    <script>
+        // Mock data for demo; in production, fetch from backend (e.g., Node.js/Express with MongoDB or Google Analytics API)
+        const mockStats = {
+            totalVisitors: 1247,
+            pageViews: 4892,
+            userActions: 1056,
+            bounceRate: 32
+        };
+
+        const mockTrafficData = {
+            labels: ['Direct', 'Organic Search', 'Social', 'Referral', 'Email'],
+            data: [45, 30, 15, 7, 3]
+        };
+
+        const mockActionsData = {
+            labels: ['2025-11-01', '2025-11-02', '2025-11-03', '2025-11-04', '2025-11-05', '2025-11-06', '2025-11-07'],
+            data: [120, 180, 150, 220, 190, 160, 236]
+        };
+
+        const mockLogs = [
+            { timestamp: '2025-11-08 14:32:15', ip: '197.210.XX.XX', action: 'Page View', page: '/services', ua: 'Chrome/120 (Windows)' },
+            { timestamp: '2025-11-08 14:31:42', ip: '41.79.XX.XX', action: 'Form Submit', page: '/contact', ua: 'Safari/17 (iOS)' },
+            { timestamp: '2025-11-08 14:30:09', ip: '105.112.XX.XX', action: 'Modal Open', page: '/', ua: 'Firefox/115 (Linux)' },
+            { timestamp: '2025-11-08 14:28:55', ip: '197.159.XX.XX', action: 'Download Tool', page: '/tools', ua: 'Edge/120 (Windows)' },
+            { timestamp: '2025-11-08 14:27:23', ip: '2a02:XX::XX', action: 'Newsletter Signup', page: '/footer', ua: 'Chrome/120 (Android)' },
+            { timestamp: '2025-11-08 14:25:47', ip: '102.89.XX.XX', action: 'Scroll Event', page: '/services', ua: 'Chrome/120 (Mac)' },
+            { timestamp: '2025-11-08 14:24:12', ip: '169.149.XX.XX', action: 'Video Play', page: '/video-hub', ua: 'Safari/17 (Mac)' },
+            { timestamp: '2025-11-08 14:22:36', ip: '197.234.XX.XX', action: 'Link Click', page: '/', ua: 'Chrome/120 (Windows)' },
+            { timestamp: '2025-11-08 14:21:04', ip: '41.73.XX.XX', action: 'Page Exit', page: '/about', ua: 'Firefox/115 (Windows)' },
+            { timestamp: '2025-11-08 14:19:28', ip: '105.228.XX.XX', action: 'Search Query', page: '/', ua: 'Edge/120 (Android)' }
+        ];
+
+        // Update stats
+        document.addEventListener('DOMContentLoaded', () => {
+            Object.keys(mockStats).forEach(key => {
+                const el = document.getElementById(key);
+                if (el) el.textContent = mockStats[key];
+            });
+
+            // Traffic Chart (Pie)
+            const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+            new Chart(trafficCtx, {
+                type: 'pie',
+                data: {
+                    labels: mockTrafficData.labels,
+                    datasets: [{
+                        data: mockTrafficData.data,
+                        backgroundColor: ['#2dbdc0', '#45fec0', '#2dbdc0', '#45fec0', '#2dbdc0'],
+                        borderColor: '#0a0a1a',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { position: 'bottom', labels: { color: '#ffffff' } } }
+                }
+            });
+
+            // Actions Chart (Line)
+            const actionsCtx = document.getElementById('actionsChart').getContext('2d');
+            new Chart(actionsCtx, {
+                type: 'line',
+                data: {
+                    labels: mockActionsData.labels,
+                    datasets: [{
+                        label: 'Daily Actions',
+                        data: mockActionsData.data,
+                        borderColor: 'hsl(162, 100%, 59%)',
+                        backgroundColor: 'rgba(45, 254, 192, 0.1)',
+                        tension: 0.4,
+                        fill: true
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, ticks: { color: '#ffffff' }, grid: { color: 'rgba(45, 254, 192, 0.1)' } },
+                        x: { ticks: { color: '#ffffff' }, grid: { color: 'rgba(45, 254, 192, 0.1)' } }
+                    },
+                    plugins: { legend: { labels: { color: '#ffffff' } } }
+                }
+            });
+
+            // Populate logs table
+            const tbody = document.getElementById('logsTableBody');
+            mockLogs.forEach(log => {
+                const row = tbody.insertRow();
+                row.innerHTML = `
+                    <td class="timestamp">${log.timestamp}</td>
+                    <td>${log.ip}</td>
+                    <td><span class="action-badge">${log.action}</span></td>
+                    <td>${log.page}</td>
+                    <td>${log.ua}</td>
+                `;
+            });
+        });
+
+        // Export function (mock CSV download)
+        function exportLogs() {
+            let csv = 'Timestamp,IP,Action,Page,User Agent\n';
+            mockLogs.forEach(log => {
+                csv += `"${log.timestamp}","${log.ip}","${log.action}","${log.page}","${log.ua}"\n`;
+            });
+            const blob = new Blob([csv], { type: 'text/csv' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'the-qlip-logs.csv';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Real-time simulation: Update stats every 30s (for demo)
+        setInterval(() => {
+            document.getElementById('totalVisitors').textContent = Math.floor(Math.random() * 100) + 1247;
+            document.getElementById('pageViews').textContent = Math.floor(Math.random() * 200) + 4892;
+        }, 30000);
+    </script>
+</body>
+</html>

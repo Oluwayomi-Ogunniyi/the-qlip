@@ -1,0 +1,588 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard | The Qlip News Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0a1a;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+            padding-top: 80px;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(45, 254, 192, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(45, 254, 192, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(45, 254, 192, 0.08) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(10, 18, 26, 0.507);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(45, 254, 192, 0.15);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: hsl(0, 0%, 100%);
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 44px;
+            margin-right: 12px;
+        }
+
+        .admin-nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .admin-nav a, .admin-nav button {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .admin-nav a:hover, .admin-nav button:hover {
+            opacity: 1;
+            background: rgba(45, 254, 192, 0.1);
+        }
+
+        .logout-btn {
+            background: rgba(255, 0, 0, 0.2);
+            color: #ff6b6b;
+            border: 1px solid rgba(255, 0, 0, 0.3);
+        }
+
+        .logout-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            color: #fff;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 20px;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 48px;
+        }
+
+        .admin-header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            color: hsl(162, 100%, 59%);
+            margin-bottom: 16px;
+        }
+
+        .admin-header p {
+            opacity: 0.8;
+            font-size: 1.1rem;
+        }
+
+        .admin-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(45, 254, 192, 0.15);
+            border-radius: 25px;
+            color: #ffffff;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-btn.active {
+            background: hsl(162, 100%, 59%);
+            color: #000;
+            border-color: hsl(162, 100%, 59%);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+            opacity: 0.9;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(45, 254, 192, 0.2);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: hsl(162, 100%, 59%);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            background: linear-gradient(135deg, hsl(162, 100%, 20%) 0%, hsl(162, 100%, 15%) 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-right: 12px;
+        }
+
+        .btn:hover {
+            background: linear-gradient(135deg, hsl(162, 100%, 15%) 0%, hsl(162, 100%, 10%) 100%);
+            transform: translateY(-2px);
+        }
+
+        .btn-danger {
+            background: linear-gradient(135deg, #ff3366 0%, #cc1a4d 100%);
+        }
+
+        .btn-danger:hover {
+            background: linear-gradient(135deg, #cc1a4d 0%, #a60d3b 100%);
+        }
+
+        .posts-list {
+            display: grid;
+            gap: 24px;
+        }
+
+        .post-item {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(45, 254, 192, 0.15);
+            border-radius: 16px;
+            padding: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .post-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .post-info p {
+            opacity: 0.7;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .post-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .post-actions .btn {
+            padding: 8px 16px;
+            font-size: 0.9rem;
+        }
+
+        .edit-form {
+            display: none;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 24px;
+            border-radius: 12px;
+            margin-top: 16px;
+        }
+
+        .edit-form.active {
+            display: block;
+        }
+
+        .logs-section {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 16px;
+            padding: 24px;
+        }
+
+        .log-item {
+            padding: 12px;
+            border-bottom: 1px solid rgba(45, 254, 192, 0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .log-item:last-child {
+            border-bottom: none;
+        }
+
+        .log-details {
+            flex: 1;
+        }
+
+        .log-time {
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .admin-nav { flex-direction: column; gap: 10px; }
+            .admin-tabs { flex-direction: column; align-items: center; }
+            .post-item { flex-direction: column; align-items: flex-start; }
+            .post-actions { width: 100%; justify-content: center; }
+            .log-item { flex-direction: column; align-items: flex-start; gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="newshub.html" class="logo">
+            <img src="images/The Qlip.png" alt="The Qlip">
+            The Qlip Admin
+        </a>
+        <div class="admin-nav">
+            <a href="newshub.html">View Site</a>
+            <button class="logout-btn" onclick="logout()">Logout</button>
+        </div>
+    </header>
+
+    <div class="main-content">
+        <div class="admin-header">
+            <h1>News Hub Admin Dashboard</h1>
+            <p>Manage posts and monitor user activities</p>
+        </div>
+
+        <div class="admin-tabs">
+            <button class="tab-btn active" onclick="switchTab('posts')">Posts</button>
+            <button class="tab-btn" onclick="switchTab('add')">Add New Post</button>
+            <button class="tab-btn" onclick="switchTab('logs')">Activity Logs</button>
+        </div>
+
+        <div id="posts" class="tab-content active">
+            <div class="posts-list" id="posts-list">
+                <!-- Dynamic posts -->
+            </div>
+        </div>
+
+        <div id="add" class="tab-content">
+            <form id="add-post-form">
+                <div class="form-group">
+                    <label for="post-title">Title</label>
+                    <input type="text" id="post-title" placeholder="Enter post title" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-image">Image URL</label>
+                    <input type="url" id="post-image" placeholder="Enter image URL (e.g., images/news1.jpg)" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-date">Date</label>
+                    <input type="date" id="post-date" required>
+                </div>
+                <div class="form-group">
+                    <label for="post-content">Short Content</label>
+                    <textarea id="post-content" placeholder="Enter short description" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="post-full">Full Content</label>
+                    <textarea id="post-full" placeholder="Enter full article content" required></textarea>
+                </div>
+                <button type="submit" class="btn">Add Post</button>
+            </form>
+        </div>
+
+        <div id="logs" class="tab-content">
+            <div class="logs-section">
+                <h2>Real-Time Activity Logs</h2>
+                <div id="logs-list">
+                    <!-- Dynamic logs -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Check authentication
+        if (!localStorage.getItem('adminLoggedIn')) {
+            window.location.href = 'newshub.html';
+        }
+
+        // Load data
+        let newsData = JSON.parse(localStorage.getItem('newsData')) || [
+            {
+                id: 1,
+                image: 'images/news1.jpg',
+                date: '2025-11-08',
+                title: 'Latest AI Breakthroughs: Neural Networks Evolve Beyond Imagination',
+                content: 'In a groundbreaking announcement today, researchers unveiled a new AI model that processes multimodal data 50% faster than previous iterations. This advancement promises to revolutionize industries from healthcare to autonomous vehicles, enabling real-time decision-making with unprecedented accuracy.',
+                fullContent: 'Dive deeper into the architecture of this model, which integrates quantum-inspired algorithms for enhanced pattern recognition. As of November 08, 2025, early adopters report a 30% improvement in predictive analytics. The Qlip team is already exploring integrations for our AI & Robotics services. Stay tuned for hands-on demos in our upcoming webinars.'
+            },
+            {
+                id: 2,
+                image: 'images/news2.jpg',
+                date: '2025-11-05',
+                title: 'Cybersecurity Trends 2025: Zero-Trust Architectures Take Center Stage',
+                content: 'With cyber threats escalating, 2025 sees a surge in zero-trust implementations. Our latest analysis highlights key strategies to fortify your digital perimeter against sophisticated attacks.',
+                fullContent: 'Zero-trust models eliminate implicit trust, verifying every access request regardless of origin. Drawing from recent breaches, this approach reduces breach windows by 60%. At The Qlip, our Cybersecurity & Data Protection services now include zero-trust audits as standard. Learn more about compliance frameworks like NIST 2.0.'
+            },
+            {
+                id: 3,
+                image: 'images/news3.jpg',
+                date: '2025-10-30',
+                title: 'Quantum Computing Advances: Practical Applications Emerge',
+                content: 'Quantum supremacy is no longer theoretical—new hardware from leading labs is solving complex problems in minutes that would take classical supercomputers years.',
+                fullContent: 'IBM\'s latest quantum processor boasts 1,000+ qubits with error rates under 0.1%. This paves the way for drug discovery and optimization challenges. The Qlip\'s AI & Robotics division is partnering with quantum firms to embed these capabilities into enterprise solutions. Watch for our whitepaper release next month.'
+            },
+            {
+                id: 4,
+                image: 'images/news4.jpg',
+                date: '2025-10-25',
+                title: 'Sustainable Tech Innovations: Green Computing for a Brighter Future',
+                content: 'Eco-friendly hardware and software are reducing carbon footprints while boosting efficiency. Discover how The Qlip is leading the charge in sustainable digital transformation.',
+                fullContent: 'From energy-efficient data centers to biodegradable circuits, 2025 innovations cut e-waste by 40%. Our Software Engineering team has developed carbon-tracking tools integrated into cloud solutions. Align your projects with ESG goals—contact us for a free sustainability assessment.'
+            }
+        ];
+
+        let logs = JSON.parse(localStorage.getItem('postLogs')) || [];
+
+        // Set default date to today
+        document.getElementById('post-date').valueAsDate = new Date();
+
+        // Function to add log
+        function addLog(type, postId = null, details = '') {
+            const logEntry = {
+                id: Date.now(),
+                type,
+                postId,
+                details,
+                timestamp: new Date().toISOString(),
+                user: 'admin'
+            };
+            logs.unshift(logEntry);
+            localStorage.setItem('postLogs', JSON.stringify(logs));
+            displayLogs();
+        }
+
+        // Display posts
+        function displayPosts() {
+            const postsList = document.getElementById('posts-list');
+            postsList.innerHTML = newsData.map(post => `
+                <div class="post-item">
+                    <div class="post-info">
+                        <h3>${post.title}</h3>
+                        <p>Date: ${post.date} | Image: ${post.image}</p>
+                        <p>${post.content.substring(0, 100)}...</p>
+                    </div>
+                    <div class="post-actions">
+                        <button class="btn" onclick="editPost(${post.id})">Edit</button>
+                        <button class="btn btn-danger" onclick="deletePost(${post.id})">Delete</button>
+                    </div>
+                    <div class="edit-form" id="edit-form-${post.id}">
+                        <form onsubmit="updatePost(event, ${post.id})">
+                            <div class="form-group">
+                                <label>Title</label>
+                                <input type="text" value="${post.title}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Image URL</label>
+                                <input type="url" value="${post.image}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" value="${post.date}" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Short Content</label>
+                                <textarea required>${post.content}</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Full Content</label>
+                                <textarea required>${post.fullContent}</textarea>
+                            </div>
+                            <button type="submit" class="btn">Update</button>
+                            <button type="button" class="btn" onclick="cancelEdit(${post.id})">Cancel</button>
+                        </form>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Add new post
+        document.getElementById('add-post-form').addEventListener('submit', e => {
+            e.preventDefault();
+            const newPost = {
+                id: Date.now(),
+                title: document.getElementById('post-title').value,
+                image: document.getElementById('post-image').value,
+                date: document.getElementById('post-date').value,
+                content: document.getElementById('post-content').value,
+                fullContent: document.getElementById('post-full').value
+            };
+            newsData.unshift(newPost);
+            localStorage.setItem('newsData', JSON.stringify(newsData));
+            addLog('create', newPost.id, `Created post: ${newPost.title}`);
+            displayPosts();
+            e.target.reset();
+            document.getElementById('post-date').valueAsDate = new Date();
+            switchTab('posts');
+        });
+
+        // Edit post
+        function editPost(id) {
+            document.getElementById(`edit-form-${id}`).classList.add('active');
+        }
+
+        function cancelEdit(id) {
+            document.getElementById(`edit-form-${id}`).classList.remove('active');
+        }
+
+        // Update post
+        function updatePost(e, id) {
+            e.preventDefault();
+            const form = e.target;
+            const postIndex = newsData.findIndex(p => p.id === id);
+            const oldTitle = newsData[postIndex].title;
+            newsData[postIndex] = {
+                ...newsData[postIndex],
+                title: form.querySelector('input[type="text"]').value,
+                image: form.querySelector('input[type="url"]').value,
+                date: form.querySelector('input[type="date"]').value,
+                content: form.querySelector('textarea')[0].value,
+                fullContent: form.querySelector('textarea')[1].value
+            };
+            localStorage.setItem('newsData', JSON.stringify(newData));
+            addLog('edit', id, `Updated post: ${oldTitle} -> ${newsData[postIndex].title}`);
+            displayPosts();
+            cancelEdit(id);
+        }
+
+        // Delete post
+        function deletePost(id) {
+            if (confirm('Are you sure?')) {
+                const post = newsData.find(p => p.id === id);
+                newsData = newsData.filter(p => p.id !== id);
+                localStorage.setItem('newsData', JSON.stringify(newsData));
+                addLog('delete', id, `Deleted post: ${post.title}`);
+                displayPosts();
+            }
+        }
+
+        // Display logs
+        function displayLogs() {
+            const logsList = document.getElementById('logs-list');
+            logsList.innerHTML = logs.map(log => `
+                <div class="log-item">
+                    <div class="log-details">
+                        <strong>${log.type.toUpperCase()}: ${log.details}</strong>
+                        <div class="log-time">${new Date(log.timestamp).toLocaleString()}</div>
+                    </div>
+                    <span>${log.user}</span>
+                </div>
+            `).join('');
+        }
+
+        // Tab switching
+        function switchTab(tabName) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            if (tabName === 'logs') displayLogs();
+        }
+
+        // Logout
+        function logout() {
+            localStorage.removeItem('adminLoggedIn');
+            window.location.href = 'newshub.html';
+        }
+
+        // Load on DOM ready
+        document.addEventListener('DOMContentLoaded', () => {
+            displayPosts();
+            displayLogs();
+            // Poll for real-time updates (every 5s)
+            setInterval(() => {
+                const updatedLogs = JSON.parse(localStorage.getItem('postLogs')) || [];
+                if (updatedLogs.length !== logs.length) {
+                    logs = updatedLogs;
+                    if (document.getElementById('logs').classList.contains('active')) {
+                        displayLogs();
+                    }
+                }
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

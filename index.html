@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="The Qlip: Expert software engineering, cybersecurity, AI solutions, and multimedia services. Transform your ideas into digital excellence with custom web/mobile apps, IT support, and tech consulting. Start your project today.">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <title>The Qlip</title>
+    <!-- Open Graph -->
+    <meta property="og:title" content="The Qlip | Transforming Ideas into Digital Excellence">
+    <meta property="og:description" content="Empowering the future with tech: Software engineering, AI, cybersecurity, and more.">
+    <meta property="og:image" content="https://theqlip.digital/images/heroimage.jpg">
+    <meta property="og:url" content="https://theqlip.digital/">
+    <meta property="og:type" content="website">
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Qlip | Transforming Ideas into Digital Excellence">
+    <meta name="twitter:description" content="Empowering the future with tech: Software engineering, AI, cybersecurity, and more.">
+    <meta name="twitter:image" content="https://theqlip.digital/images/heroimage.jpg">
+    <link rel="canonical" href="https://theqlip.digital/">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "The Qlip",
+      "url": "https://theqlip.digital",
+      "logo": "https://theqlip.digital/images/The Qlip.png",
+      "description": "Transforming ideas into digital excellence with software engineering, AI, cybersecurity, and multimedia solutions.",
+      "sameAs": [
+        "https://x.com/theqlip",
+        "https://github.com/theqlip"
+      ],
+      "serviceType": ["Software Development", "Cybersecurity", "AI & Robotics", "Multimedia Production"],
+      "areaServed": "Worldwide",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "url": "https://theqlip.digital/contact.html"
+      }
+    }
+    </script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://www.youtube-nocookie.com/iframe_api"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #0a0a1a;
+            color: #ffffff;
+            line-height: 1.4;
+            overflow-x: hidden;
+            padding-top: 0;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image:
+                radial-gradient(circle at 20% 80%, rgba(45, 254, 192, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(45, 254, 192, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(45, 254, 192, 0.08) 0%, transparent 50%);
+            z-index: -1;
+        }
+
+        .waves {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 80px;
+            background: rgba(10, 18, 26, 0.507);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(45, 254, 192, 0.15);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: hsl(0, 0%, 100%);
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 44px;
+            margin-right: 12px;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+            align-items: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 500;
+            opacity: 0.9;
+            transition: opacity 0.3s ease;
+        }
+
+        nav a:hover {
+            opacity: 1;
+            color: hsl(162, 100%, 59%);
+        }
+
+        .header-btn {
+            padding: 10px 24px;
+            background: linear-gradient(135deg, hsl(162, 100%, 20%) 0%, hsl(162, 100%, 15%) 100%);
+            color: #fff;
+            border: none;
+            border-radius: 25px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .header-btn:hover {
+            background: linear-gradient(135deg, hsl(162, 100%, 15%) 0%, hsl(162, 100%, 10%) 100%);
+            transform: translateY(-2px);
+        }
+
+        .hero {
+            position: relative;
+            padding: 200px 20px 120px;
+            text-align: left;
+            background: linear-gradient(to bottom, rgba(10, 25, 26, 0.63) 0%, rgba(0, 0, 0, 0.95) 100%),
+                        url('images/heroimage.jpg');
+            background-position: center center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-attachment: scroll, fixed;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+            padding-left: -0vw;
+            padding-right: 33vw;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            color: #ffffff;
+            line-height: 1.0;
+            
+        }
+
+        .hero h1 span {
+            display: block;
+            font-size: 0.85em;
+            letter-spacing: 4px;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 48px;
+            opacity: 0.9;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            max-width: 700px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .btn-outline-teal {
+            padding: 16px 30px;
+            border: 2px solid hsl(162, 100%, 59%);
+            background: transparent;
+            color: hsl(162, 100%, 59%);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-outline-teal:hover {
+            background: hsl(162, 100%, 59%);
+            color: #000;
+            transform: translateY(-3px);
+            box-shadow: 0 12px 24px rgba(45, 254, 192, 0.4);
+        }
+
+        .services {
+            padding: 100px 20px 80px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .services h2 {
+            text-align: center;
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 72px;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(45, 254, 192, 0.15);
+            border-radius: 24px;
+            padding: 48px 24px 32px;
+            text-align: center;
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(45, 254, 192, 0.3);
+            box-shadow: 0 24px 48px rgba(45, 254, 192, 0.1);
+        }
+
+        .service-icon {
+            width: 72px;
+            height: 72px;
+            margin-bottom: 24px;
+            border-radius: 50%;
+            background: rgba(45, 254, 192, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(45, 254, 192, 0.2);
+            flex-shrink: 0;
+            position: absolute;
+            top: 32px;
+            left: 32px;
+            margin: 0;
+        }
+
+        .service-icon i {
+            font-size: 36px;
+            color: hsl(162, 100%, 59%);
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            letter-spacing: 0.3px;
+            margin-top: 60px;
+            text-align: left;
+        }
+
+        .service-card p {
+            opacity: 0.6;
+            font-size: 0.95rem;
+            font-weight: 300;
+            text-align: left;
+        }
+
+        .service-content {
+            padding-left: 10px;
+            padding-right: 40px;
+            text-align: left;
+            margin-top: 40px;
+            flex: 1.5;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .media-section {
+            padding: 120px 20px;
+        }
+
+        .media-grid {
+            display: flex;
+            gap: 72px;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: stretch;
+        }
+
+        .media-grid.reverse {
+            flex-direction: row-reverse;
+        }
+
+        .news-hub, .contact {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(45, 254, 192, 0.15);
+            border-radius: 24px;
+            padding: 48px;
+        }
+
+        .media-image {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(10, 18, 26, 0.6);
+            border-radius: 24px;
+            padding: 40px;
+            box-sizing: border-box;
+        }
+
+        .media-image img {
+            max-width: 100%;
+            max-height: 100%;
+            height: auto;
+            width: auto;
+            object-fit: contain;
+            border-radius: 20px;
+            box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5);
+        }
+
+        .news-hub h3, .contact h3 {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+            opacity: 0.95;
+        }
+
+        .news-hub p {
+            font-size: 1.1rem;
+            margin-bottom: 32px;
+            opacity: 0.8;
+            font-weight: 300;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .news-card {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(45, 254, 192, 0.1);
+            border-radius: 16px;
+            padding: 24px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            aspect-ratio: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .news-card:hover {
+            background: rgba(45, 254, 192, 0.08);
+            border-color: rgba(45, 254, 192, 0.3);
+        }
+
+        .news-image {
+            width: 100%;
+            height: 70%;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 12px;
+        }
+
+        .news-headline {
+            font-size: 0.95rem;
+            font-weight: 600;
+            opacity: 0.9;
+            line-height: 1.2;
+            height: 30%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .tools-label { text-align: center; font-size: 1rem; opacity: 0.6; margin-top: 16px; font-weight: 300; }
+
+        .contact h3 { margin-bottom: 24px; }
+
+        .form-group { margin-bottom: 20px; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            opacity: 0.8;
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(45, 254, 192, 0.2);
+            border-radius: 12px;
+            color: #ffffff;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: hsl(162, 100%, 59%);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .btn-send {
+            width: 100%;
+            background: linear-gradient(135deg, hsl(162, 100%, 20%) 0%, hsl(162, 100%, 15%) 100%);
+            color: #fff;
+            padding: 16px;
+            border: none;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-send:hover {
+            background: linear-gradient(135deg, hsl(162, 100%, 15%) 0%, hsl(162, 100%, 10%) 100%);
+            transform: translateY(-2px);
+        }
+
+        /* FOOTER */
+        .footer {
+            background: rgba(10, 10, 26, 0.95);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(45, 254, 192, 0.15);
+            margin-top: 120px;
+            padding: 80px 20px 40px;
+            color: #fff;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 48px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 24px;
+            color: hsl(162, 100%, 59%);
+            letter-spacing: 0.5px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 12px;
+        }
+
+        .footer-column a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: hsl(162, 100%, 59%);
+        }
+
+        .footer-bottom-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-bottom-links a:hover {
+            color: hsl(162, 100%, 59%);
+        }
+
+        .footer-tagline {
+            margin: 16px 0 24px;
+            opacity: 0.8;
+            font-weight: 300;
+            font-size: 0.95rem;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-icon {
+            width: 44px;
+            height: 44px;
+            background: rgba(45, 254, 192, 0.1);
+            border: 1px solid rgba(45, 254, 192, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: hsl(162, 100%, 59%);
+            transform: translateY(-4px);
+        }
+
+        .social-icon svg {
+            width: 20px;
+            height: 20px;
+            fill: currentColor;
+        }
+
+        .tools-scroll-container {
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            padding: 12px 0;
+            margin: -12px 0;
+        }
+
+        .tools-scroll-container::-webkit-scrollbar {
+            height: 8px;
+            width: 50px;
+        }
+
+        .tools-scroll-container::-webkit-scrollbar-track {
+            background: rgba(45, 254, 192, 0.1);
+            border-radius: 4px;
+        }
+
+        .tools-scroll-container::-webkit-scrollbar-thumb {
+            background: hsl(162, 100%, 59%);
+            border-radius: 4px;
+        }
+
+        .tools-grid {
+            display: flex;
+            gap: 20px;
+            min-width: max-content;
+            scroll-snap-type: x mandatory;
+        }
+
+        .tool-item {
+            flex: 0 0 220px;
+            background: rgba(45, 254, 192, 0.08);
+            border: 1px solid rgba(45, 254, 192, 0.2);
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+            scroll-snap-align: start;
+        }
+
+        .tool-item:hover {
+            background: rgba(45, 254, 192, 0.25);
+            border-color: hsl(162, 100%, 59%);
+            transform: translateY(-6px);
+            box-shadow: 0 12px 24px rgba(45, 254, 192, 0.2);
+        }
+
+        .tool-item strong {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        .tool-item small {
+            opacity: 0.7;
+            font-size: 0.85rem;
+        }
+
+        .newsletter-form .form-group-flex {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-form input {
+            flex: 1;
+            min-width: 220px;
+            padding: 18px 20px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(45, 254, 192, 0.3);
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+        }
+
+        .newsletter-form input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-subscribe {
+            padding: 18px 32px;
+            white-space: nowrap;
+            min-width: 160px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 60px auto 0;
+            padding-top: 40px;
+            border-top: 1px solid rgba(45, 254, 192, 0.15);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+            list-style: none;
+            color: #0a0a1a;
+        }
+
+        .footer-tools-wide { 
+            grid-column: span 2; 
+        }
+
+        @media (max-width: 1024px) {
+            .services-grid { grid-template-columns: repeat(2, 1fr); }
+            nav ul { gap: 20px; }
+            .news-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            header { padding: 0 20px; flex-direction: column; height: auto; padding: 20px; }
+            nav ul { flex-direction: column; gap: 10px; margin: 10px 0; }
+            .hero {
+                padding: 220px 20px 100px;
+                text-align: left;
+            }
+            .hero-content {
+                padding-left: 40px;
+            }
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            .hero p {
+                font-size: 1.2rem;
+            }
+            .hero-buttons {
+                justify-content: flex-start;
+            }
+            .btn-outline-teal {
+                padding: 14px 32px;
+                font-size: 1rem;
+            }
+            .services-grid { grid-template-columns: 1fr; gap: 24px; }
+            .news-grid { grid-template-columns: 1fr; }
+            .services h2, .news-hub h3, .contact h3 { font-size: 2rem; }
+            .media-grid, .media-grid.reverse { flex-direction: column; gap: 48px; }
+            .newsletter-form .form-group-flex { 
+                flex-direction: column; 
+            }
+            .footer-subscribe { 
+                width: 100%; 
+            }
+            .footer-bottom { 
+                flex-direction: column; 
+                text-align: center; 
+            }
+            .footer-tools-wide { 
+                grid-column: auto; 
+            }
+            .service-card {
+                padding: 80px 32px 40px;
+                text-align: center;
+            }
+            .service-icon {
+                top: 32px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+            .service-content {
+                padding-left: 0;
+                margin-top: 60px;
+                text-align: center;
+            }
+            .service-card h3, .service-card p {
+                text-align: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero { padding: 160px 16px 60px; }
+            .hero-content {
+                padding-left: 20px;
+            }
+            .services { padding: 60px 16px 40px; }
+            .service-card, .news-hub, .contact { padding: 32px 20px; }
+        }
+
+        /* ===== TECH-SAVVY POPUP MODAL (GLASS + TEAL GLOW + MULTI-STEP) ===== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0; top: 0;
+            width: 100%; height: 100%;
+            background: rgba(10, 18, 26, 0.95);
+            backdrop-filter: blur(16px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            transition: opacity 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .modal.active {
+            display: flex;
+            opacity: 1;
+        }
+        .modal-content {
+            background: rgba(10, 18, 26, 0.88);
+            backdrop-filter: blur(32px);
+            border: 1px solid rgba(45, 254, 192, 0.35);
+            border-radius: 28px;
+            padding: 56px 48px;
+            max-width: 580px;
+            width: 100%;
+            box-shadow: 0 40px 80px rgba(45, 254, 192, 0.3);
+            position: relative;
+            transform: scale(0.92);
+            transition: transform 0.45s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .modal.active .modal-content { transform: scale(1); }
+
+        .close-button {
+            position: absolute;
+            top: 20px; right: 24px;
+            font-size: 36px;
+            font-weight: 200;
+            cursor: pointer;
+            color: rgba(255,255,255,0.6);
+            transition: all 0.3s ease;
+        }
+        .close-button:hover { 
+            color: hsl(162, 100%, 59%); 
+            transform: rotate(90deg) scale(1.2);
+        }
+
+        .modal h2 { 
+            font-size: 2.6rem; 
+            margin-bottom: 12px; 
+            background: linear-gradient(135deg, #fff, hsl(162, 100%, 59%));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .modal > p { 
+            opacity: 0.85; 
+            margin-bottom: 36px; 
+            font-size: 1.15rem; 
+            font-weight: 300;
+        }
+
+        .progress-bar {
+            height: 4px;
+            background: rgba(45, 254, 192, 0.2);
+            border-radius: 2px;
+            overflow: hidden;
+            margin: 32px 0;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 33.33%;
+            background: linear-gradient(90deg, hsl(162, 100%, 59%), hsl(162, 100%, 70%));
+            border-radius: 2px;
+            transition: width 0.6s ease;
+            box-shadow: 0 0 20px hsl(162, 100%, 59%);
+        }
+
+        .step { display: none; animation: fadeSlide 0.6s ease; }
+        .step.active { display: block; }
+        @keyframes fadeSlide { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .modal .form-group {
+            margin-bottom: 24px;
+        }
+        .modal .form-group label {
+            opacity: 0.9;
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        .modal .form-group input,
+        .modal .form-group select,
+        .modal .form-group textarea {
+            width: 100%;
+            padding: 16px 18px;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(45, 254, 192, 0.3);
+            border-radius: 16px;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        .modal .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2344fec0' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 9 12 15 18 9'%3E%3C/polyline%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            background-size: 14px;
+            cursor: pointer;
+        }
+        .modal .form-group input:focus,
+        .modal .form-group select:focus,
+        .modal .form-group textarea:focus {
+            border-color: hsl(162, 100%, 59%);
+            box-shadow: 0 0 20px rgba(45, 254, 192, 0.4);
+            outline: none;
+        }
+        .modal .form-group textarea { min-height: 140px; resize: vertical; }
+
+        /* ==== ENHANCED DROPDOWN COLOR THEME (PROJECT TYPE + BUDGET) ==== */
+        .modal .form-group select {
+            background-color: rgba(10, 18, 26, 0.95);
+        }
+        .modal .form-group select:focus {
+            background-color: rgba(10, 18, 26, 1);
+        }
+        .modal .form-group option {
+            background: #0a0a1a;
+            color: #ffffff;
+            padding: 12px 18px;
+            font-weight: 500;
+        }
+        .modal .form-group option:hover {
+            background: hsl(162, 100%, 59%);
+            color: #000000;
+        }
+        .modal .form-group option:checked {
+            background: linear-gradient(135deg, hsl(162, 100%, 20%), hsl(162, 100%, 15%));
+            color: hsl(162, 100%, 59%);
+            font-weight: 600;
+        }
+
+        .modal-btns {
+            display: flex;
+            gap: 16px;
+            margin-top: 32px;
+        }
+        .prev-btn, .next-btn, .submit-btn {
+            flex: 1;
+            padding: 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .prev-btn {
+            border: 2px solid rgba(45, 254, 192, 0.5);
+            background: transparent;
+            color: hsl(162, 100%, 59%);
+        }
+        .prev-btn:hover {
+            background: rgba(45, 254, 192, 0.15);
+        }
+        .next-btn, .submit-btn {
+            background: linear-gradient(135deg, hsl(162, 100%, 20%) 0%, hsl(162, 100%, 15%) 100%);
+            border: none;
+            color: #fff;
+        }
+        .next-btn:hover, .submit-btn:hover {
+            background: linear-gradient(135deg, hsl(162, 100%, 15%) 0%, hsl(162, 100%, 10%) 100%);
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(45, 254, 192, 0.4);
+        }
+
+        @media (max-width: 540px) {
+            .modal-content { padding: 48px 32px; }
+            .modal h2 { font-size: 2.2rem; }
+            .modal-btns { flex-direction: column; }
+        }
+
+        /* Tech-Savvy YouTube Popup */
+        .video-popup {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            z-index: 999;
+            width: 144px;
+            height: 144px;
+        }
+
+        .popup-content {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(45, 254, 192, 0.3);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 32px rgba(45, 254, 192, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        .popup-content:hover {
+            box-shadow: 0 12px 40px rgba(45, 254, 192, 0.3);
+            transform: scale(1.02);
+        }
+
+        #yt-player {
+            border-radius: 12px;
+        }
+
+        .close-popup {
+            position: absolute;
+            top: 4px;
+            right: 4px;
+            background: rgba(0, 0, 0, 0.5);
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            cursor: pointer;
+            z-index: 1000;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-popup:hover {
+            background: hsl(162, 100%, 59%);
+            transform: rotate(90deg);
+        }
+
+        @media (max-width: 768px) {
+            .video-popup {
+                right: 10px;
+                top: 110px;
+                width: 120px;
+                height: 120px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <svg class="waves" viewBox="0 0 1200 800" preserveAspectRatio="none">
+        <defs>
+            <linearGradient id="waveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" style="stop-color:hsl(162, 100%, 59%);stop-opacity:0.3" />
+                <stop offset="100%" style="stop-color:hsl(162, 100%, 59%);stop-opacity:0" />
+            </linearGradient>
+        </defs>
+        <path d="M0,256L48,266.7C96,277,192,299,288,277.3C384,256,480,192,576,170.7C672,149,768,171,864,197.3C960,224,1056,256,1144,266.7L1200,277L1200,320L1144,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="url(#waveGrad)" />
+        <path d="M0,192L48,202.7C96,213,192,235,288,213.3C384,192,480,128,576,106.7C672,85,768,107,864,133.3C960,160,1056,192,1144,202.7L1200,213L1200,320L1144,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z" fill="url(#waveGrad)" opacity="0.5" />
+    </svg>
+
+    <header>
+        <a href="#" class="logo">
+            <img src="images/The Qlip.png" alt="The Qlip">
+            The Qlip
+        </a>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        <a href="javascript:void(0)" class="header-btn open-modal">Start a Project</a>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>
+                EMPOWERING THE FUTURE
+                <span>WITH AI & TECH SOLUTIONS</span>
+            </h1>
+            <p>We specialize in custom software development, cybersecurity protection, AI integration, and multimedia production to turn your ideas into scalable digital solutions.</p>
+            <div class="hero-buttons">
+                <a href="#contact" class="btn-outline-teal">Book a consultation →</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="services" id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Software Engineering</h3>
+                    <p>Custom software development, web & mobile apps, cloud solutions.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div class="service-content">
+                    <h3>System Testing & IT Support</h3>
+                    <p>QA testing, automation, 24/7 IT support & maintenance.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-photo-video"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Multimedia Solutions</h3>
+                    <p>Video production, graphic design, animation & branding.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-shield-halved"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Cybersecurity & Data Protection</h3>
+                    <p>Penetration testing, compliance, threat monitoring.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-robot"></i>
+                </div>
+                <div class="service-content">
+                    <h3>AI & Robotics</h3>
+                    <p>Machine learning models, computer vision, automation bots.</p>
+                </div>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                </div>
+                <div class="service-content">
+                    <h3>Training & Consultancy</h3>
+                    <p>Tech workshops, certifications, strategic IT consulting.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="media-section">
+        <div class="media-grid">
+            <div class="news-hub">
+                <h3>News Hub</h3>
+                <p>Explore our News Hub</p>
+                <div class="news-grid">
+                    <div class="news-card" onclick="window.location.href='newshub.html?id=1'">
+                        <img src="images/news1.jpg" alt="News 1" class="news-image" loading="lazy">
+                        <div class="news-headline">Latest AI Breakthroughs</div>
+                    </div>
+                    <div class="news-card" onclick="window.location.href='newshub.html?id=2'">
+                        <img src="images/news2.jpg" alt="News 2" class="news-image" loading="lazy">
+                        <div class="news-headline">Cybersecurity Trends 2025</div>
+                    </div>
+                </div>
+                <div class="tools-label">Stay up to date</div>
+            </div>
+            <div class="media-image">
+                <img src="images/news.png" alt="Curated Tech Videos">
+            </div>
+        </div>
+    </section>
+
+    <section class="media-section" id="contact">
+        <div class="media-grid reverse">
+            <div class="contact">
+                <h3>Get in Touch</h3>
+                <form id="contact-form">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name01" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email01" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message01" placeholder="Enter your message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-send">Send Message</button>
+                </form>
+            </div>
+            <div class="media-image">
+                <img src="images/getintouch.png" alt="Contact The Qlip for custom software and AI project consultations" loading="lazy">
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" aria-label="Site footer">
+        <div class="footer-container">
+            <div class="footer-column footer-logo-column">
+                <a href="#" class="logo">
+                    <img src="images/The Qlip.png" alt="The Qlip">
+                    The Qlip
+                </a>
+                <p class="footer-tagline">Transforming ideas into digital excellence.</p>
+                <div class="social-icons">
+                    <a href="#" aria-label="X (Twitter)" class="social-icon" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                    <a href="#" aria-label="GitHub" class="social-icon" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386C24 5.373 18.627 0 12 0z"/></svg>
+                    </a>
+                    <a href="#" aria-label="TikTok" class="social-icon" rel="noopener noreferrer">
+                        <svg viewBox="0 0 448 512"><path d="M448 209.9a210.1 210.1 0 0 1 -122.8-39.3V349.4A162.6 162.6 0 1 1 185 188.3V278.2a74.6 74.6 0 1 0 52.2 71.2V0l88 0a121.2 121.2 0 0 0 1.9 22.2h0A122.2 122.2 0 0 0 381 102.4a121.4 121.4 0 0 0 67 20.1z"/></svg>
+                    </a>
+                    <a href="#" aria-label="WhatsApp" class="social-icon" rel="noopener noreferrer">
+                        <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994 9.846 9.846 0 0 1-1.38 5.032l-.774 1.418-1.147.3c-1.204.31-2.45.46-3.736.46z"/></svg>
+                    </a>
+                </div>
+            </div>
+
+            <div class="footer-column">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Services</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column footer-tools-wide">
+                <h4>Free Tools</h4>
+                <div class="tools-scroll-container">
+                    <div class="tools-grid">
+                        <div class="tool-item"><strong>Invoice Generator</strong><small>Pro invoices in seconds</small></div>
+                        <div class="tool-item"><strong>Project Calculator</strong><small>Time & cost estimator</small></div>
+                        <div class="tool-item"><strong>ROI Estimator</strong><small>Return on investment calc</small></div>
+                        <div class="tool-item"><strong>Timeline Planner</strong><small>Gantt-style scheduler</small></div>
+                        <div class="tool-item"><strong>File Converter</strong><small>PDF/Image/Doc tools</small></div>
+                        <div class="tool-item"><strong>Budget Tracker</strong><small>Simple expense manager</small></div>
+                        <div class="tool-item"><strong>QR Code Generator</strong><small>Custom codes + logo</small></div>
+                        <div class="tool-item"><strong>Password Generator</strong><small>Ultra-secure passwords</small></div>
+                        <div class="tool-item"><strong>Color Palette Tool</strong><small>Extract from any image</small></div>
+                        <div class="tool-item"><strong>Uptime Monitor</strong><small>Free site checker</small></div>
+                        <div class="tool-item"><strong>Domain Checker</strong><small>Availability + WHOIS</small></div>
+                        <div class="tool-item"><strong>SEO Auditor</strong><small>Quick site health scan</small></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-column footer-newsletter">
+                <h4>Stay Updated</h4>
+                <p>Get tech tips & free tool updates.</p>
+                <form id="newsletter-form" class="newsletter-form">
+                    <div class="form-group-flex">
+                        <input type="email" name="email" placeholder="Your email" required>
+                        <button type="submit" class="btn-send footer-subscribe">Subscribe</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 The Qlip. All rights reserved.</p>
+            <ul class="footer-bottom-links">
+                <li><a href="policy.html">Privacy Policy</a></li>
+                <li><a href="terms.html">Terms of Service</a></li>
+                <li><a href="cookie.html">Cookie Policy</a></li>
+            </ul>
+        </div>
+    </footer>
+
+    <!-- TECH-SAVVY START A PROJECT MODAL -->
+    <div id="getStartedModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button">&times;</span>
+            <h2>Launch Your Project</h2>
+            <p>3 quick steps to turn your vision into reality</p>
+            <div class="progress-bar"><div class="progress-fill" style="width: 33.33%;"></div></div>
+
+            <form id="get-started-form">
+                <!-- Step 1 -->
+                <div class="step active" data-step="1">
+                    <div class="form-group">
+                        <label for="user_name">Full Name</label>
+                        <input type="text" id="user_name" name="user_name" placeholder="John Doe" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="user_email">Email Address</label>
+                        <input type="email" id="user_email" name="user_email" placeholder="john@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="contact_no">Contact Number</label>
+                        <input type="tel" id="contact_no" name="contact_no" placeholder="+1 (555) 123-4567" required>
+                    </div>
+                    <div class="modal-btns">
+                        <button type="button" class="next-btn">Next →</button>
+                    </div>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="step" data-step="2">
+                    <div class="form-group">
+                        <label for="project_type">Project Type</label>
+                        <select id="project_type" name="project_type" required>
+                            <option value="">Select Project Type</option>
+                            <option value="Website Development">Web Development</option>
+                            <option value="Cybersecurity">Cybersecurity</option>
+                            <option value="UI/UX Design">UI/UX Design</option>
+                            <option value="Multimedia">Multimedia</option>
+                            <option value="Branding">Branding</option>
+                            <option value="Business Automation / AI Integration">Business Automation / AI Integration</option>
+                            <option value="Virtual Assistance">Virtual Assistance</option>
+                            <option value="Educational / Training">Training / Mentorship</option>
+                            <option value="Consultancy">Consultancy</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Range</label>
+                        <select id="budget" name="budget" required>
+                            <option value="">Select Budget</option>
+                            <option value="<5k">Under $5,000</option>
+                            <option value="5-10k">$5,000 – $10,000</option>
+                            <option value="10-25k">$10,000 – $25,000</option>
+                            <option value="25-50k">$25,000 – $50,000</option>
+                            <option value="50k+">Over $50,000</option>
+                            <option value="custom">Custom / Let's discuss</option>
+                        </select>
+                    </div>
+                    <div class="modal-btns">
+                        <button type="button" class="prev-btn">← Previous</button>
+                        <button type="button" class="next-btn">Next →</button>
+                    </div>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="step" data-step="3">
+                    <div class="form-group">
+                        <label for="message">Your Project</label>
+                        <textarea id="message" name="message" placeholder="Tell us everything about your idea, goals, timeline..." required></textarea>
+                    </div>
+                    <div class="modal-btns">
+                        <button type="button" class="prev-btn">← Previous</button>
+                        <button type="submit" class="submit-btn btn-send">Submit Project 🚀</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Tech-Savvy YouTube Popup -->
+    <div id="video-popup" class="video-popup">
+        <div class="popup-content">
+            <div id="yt-player"></div>
+            <button id="close-popup" class="close-popup">&times;</button>
+        </div>
+    </div>
+
+    <!-- EmailJS SDK -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script>
+        // Initialize EmailJS
+        emailjs.init("DVlpv6WkJuRl2RWLZ");
+
+        // Ultra-smooth multi-step modal with validation + glow progress
+        const modal = document.getElementById('getStartedModal');
+        const openBtn = document.querySelector('.open-modal');
+        const closeBtn = document.querySelector('.close-button');
+        const steps = document.querySelectorAll('.step');
+        const progressFill = document.querySelector('.progress-fill');
+        const nextBtns = document.querySelectorAll('.next-btn');
+        const prevBtns = document.querySelectorAll('.prev-btn');
+        const form = document.getElementById('get-started-form');
+        let currentStep = 1;
+
+        function updateProgress() {
+            progressFill.style.width = `${(currentStep / 3) * 100}%`;
+        }
+
+        function showStep(n) {
+            steps.forEach((step, i) => step.classList.toggle('active', i + 1 === n));
+            currentStep = n;
+            updateProgress();
+        }
+
+        function validateCurrentStep() {
+            const activeStep = document.querySelector(`.step[data-step="${currentStep}"]`);
+            const inputs = activeStep.querySelectorAll('input[required], select[required], textarea[required]');
+            let valid = true;
+            inputs.forEach(input => {
+                if (!input.value.trim()) {
+                    input.style.borderColor = '#ff3366';
+                    valid = false;
+                } else {
+                    input.style.borderColor = 'rgba(45, 254, 192, 0.3)';
+                }
+            });
+            return valid;
+        }
+
+        openBtn.addEventListener('click', () => {
+            modal.classList.add('active');
+            showStep(1);
+            form.reset();
+        });
+
+        closeBtn.addEventListener('click', () => modal.classList.remove('active'));
+        modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('active'); });
+        window.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('active'); });
+
+        nextBtns.forEach(btn => btn.addEventListener('click', () => {
+            if (validateCurrentStep() && currentStep < 3) showStep(currentStep + 1);
+        }));
+
+        prevBtns.forEach(btn => btn.addEventListener('click', () => {
+            if (currentStep > 1) showStep(currentStep - 1);
+        }));
+
+        form.addEventListener('submit', e => {
+            e.preventDefault();
+            if (validateCurrentStep()) {
+                // Send via EmailJS - Project Template
+                emailjs.sendForm("service_grblnof", "template_vw26jo9", form)
+                    .then((result) => {
+                        alert('🎉 Project submitted! We\'ll reach out within 24 hours.');
+                        modal.classList.remove('active');
+                        form.reset();
+                        showStep(1);
+                    }, (error) => {
+                        alert('Oops! Something went wrong. Please try again or contact us directly.');
+                        console.log('EmailJS Error:', error);
+                    });
+            }
+        });
+
+        // Get in Touch Form
+        const contactForm = document.getElementById('contact-form');
+        contactForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const nameInput = contactForm.querySelector('input[name="name01"]');
+            const emailInput = contactForm.querySelector('input[name="email01"]');
+            const messageInput = contactForm.querySelector('textarea[name="message01"]');
+            if (!nameInput.value.trim() || !emailInput.value.trim() || !messageInput.value.trim()) {
+                alert('Please fill in all fields.');
+                return;
+            }
+            // Send via EmailJS - Contact Template (replace with your contact template ID)
+            emailjs.sendForm("service_grblnof", "template_vw26jo9", contactForm)
+                .then((result) => {
+                    alert('Message sent! We\'ll get back to you soon.');
+                    contactForm.reset();
+                }, (error) => {
+                    alert('Failed to send message. Please try again.');
+                    console.log('EmailJS Contact Error:', error);
+                });
+        });
+
+        // Newsletter Form
+        const newsletterForm = document.getElementById('newsletter-form');
+        newsletterForm.addEventListener('submit', e => {
+            e.preventDefault();
+            const emailInput = newsletterForm.querySelector('input[name="email"]');
+            if (!emailInput.value.trim()) {
+                emailInput.style.borderColor = '#ff3366';
+                return;
+            }
+            emailInput.style.borderColor = 'rgba(45, 254, 192, 0.3)';
+            // Send via EmailJS - Newsletter Template (replace with your newsletter template ID)
+            emailjs.sendForm("service_grblnof", "template_vw26jo9", newsletterForm)
+                .then((result) => {
+                    alert('🎉 Subscribed! Thanks for joining our updates.');
+                    newsletterForm.reset();
+                }, (error) => {
+                    alert('Subscription failed. Please try again.');
+                    console.log('EmailJS Newsletter Error:', error);
+                });
+        });
+
+        // YouTube Popup Script
+        let player;
+        let popupVisible = false;
+        const VIDEO_ID = '9LlurNumzN0'; // Selected video: "What is AI? Simple Explanation for Beginners!"
+
+        function onYouTubeIframeAPIReady() {
+            console.log('YouTube API ready');
+        }
+
+        function showPopup() {
+            if (popupVisible) return;
+
+            const popup = document.getElementById('video-popup');
+            const ytContainer = document.getElementById('yt-player');
+
+            if (!player) {
+                try {
+                    player = new YT.Player('yt-player', {
+                        height: '144',
+                        width: '144',
+                        videoId: VIDEO_ID,
+                        playerVars: {
+                            'playsinline': 1,
+                            'autoplay': 0,
+                            'mute': 1,
+                            'controls': 0,
+                            'modestbranding': 1,
+                            'loop': 1,
+                            'playlist': VIDEO_ID,
+                            'origin': window.location.origin,
+                            'widget_referrer': window.location.href
+                        },
+                        events: {
+                            'onReady': function(event) {
+                                console.log('Player ready – video loaded successfully');
+                            },
+                            'onError': function(event) {
+                                console.error('YouTube Player Error Code:', event.data);
+                                // Fallback: Hide popup on error (prevents stuck state)
+                                const popup = document.getElementById('video-popup');
+                                popup.style.display = 'none';
+                                popupVisible = false;
+                                if (event.data === 153) {
+                                    console.log('Error 153 detected – check referrer policies or try nocookie domain');
+                                }
+                            },
+                            'onStateChange': function(event) {
+                                // Optional: Log state (e.g., if it fails to play)
+                                console.log('Player state changed to:', event.data);
+                            }
+                        }
+                    });
+                } catch (error) {
+                    console.error('Failed to create YouTube player:', error);
+                    return; // Bail out on creation failure
+                }
+            }
+
+            popup.style.display = 'block';
+            popupVisible = true;
+            try {
+                player.playVideo();
+            } catch (error) {
+                console.error('Failed to play video:', error);
+            }
+
+            setTimeout(() => {
+                if (player) player.pauseVideo();
+                popup.style.display = 'none';
+                popupVisible = false;
+            }, 7000);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                showPopup();
+                setInterval(showPopup, 180000); // Every 3 minutes
+            }, 7000); // 7 seconds after load
+        });
+
+        document.getElementById('close-popup').addEventListener('click', () => {
+            if (player) {
+                player.pauseVideo();
+            }
+            document.getElementById('video-popup').style.display = 'none';
+            popupVisible = false;
+        });
+    </script>
+</body>
+</html>
